@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="d-flex justify-content-end border-bottom border-dark p-4">
+        <div>
+            <a class="mr-3" href="/quotes">Go Back</a>
+            <a href="/logout"><button class="btn btn-warning">Log Out</button></a>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="w-50">
+            <h4 class="mt-4">{{user.first_name}} {{user.last_name}}'s Quotes</h4>
+            {% for quote in user.quotes_created.all %}
+            <p class="w-50 border border-black p-3">{{quote.author}} : {{quote.quote}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

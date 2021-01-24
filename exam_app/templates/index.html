@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Log In or Registrate</title>
+</head>
+
+<body class="p-5 bg-light">
+    <div class="container">
+        <h1 class="mb-5 text-info">Welcome to QuoteBook</h1>
+        {% if messages %}
+            <ul>
+                {% for error in messages %}
+                <li class="text-danger">{{error}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        <div class="w-25 d-inline-flex flex-xl-column p-4 justify-content-center mr-5 border border-dark rounded bg-white">
+            <h1 class="mb-3">Registration</h1>
+            <form action="/create_user" method="post">
+                {% csrf_token %}
+                <label for="f_n"> First Name : </label><input type="text" name="f_n">
+                <label for="l_n"> Last Name :</label> <input type="text" name="l_n">
+                <label for="email"> Email :</label> <input type="email" name="email">
+                <label for="pw"> Password : </label><input type="password" name="pw">
+                <label for="conf_pw"> Confirm Password :</label> <input type="password" name="conf_pw">
+                <input class="mt-4 btn btn-primary" type="submit" value="Registrate">
+            </form>
+        </div>
+        <div class="w-25 d-inline-flex flex-xl-column p-4 justify-content-center ml-5 border border-dark rounded bg-white">
+            <h2 class="mb-3">Log In</h2>
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <label for="email">Email : </label>
+                <input type="text" name="email">
+                <label for="pw">Password : </label>
+                <input type="password" name="pw">
+                <input class="mt-4 btn btn-primary" type="submit" value="Log in">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

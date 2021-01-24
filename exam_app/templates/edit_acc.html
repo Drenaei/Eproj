@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex justify-content-between border-bottom border-dark p-4">
+        <h2 class="text-info">Edit my account</h2>
+        <div>
+            <a class="mr-3" href="/quotes">Go Back</a>
+            <a href="/logout"><button class="btn btn-warning">Log Out</button></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="w-50 mt-5">
+            {% if messages %}
+            <ul>
+                {% for error in messages %}
+                <li class="text-danger">{{error}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="/validate/{{the_user.id}}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="f_n">First Name</label>
+                    <input class="form-control" type="text" name="first" id="f_n" value="{{the_user.first_name}}">
+                </div>
+                <div class="form-group">
+                    <label for="l_n">Last Name</label>
+                    <input class="form-control" type="text" name="last" id="l_n" value="{{the_user.last_name}}">
+                </div>
+                <div class="form-group">
+                    <label for="eml">Email</label>
+                    <input class="form-control" type="text" name="email" id="eml" value="{{the_user.email}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
